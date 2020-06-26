@@ -62,7 +62,7 @@
             <select name="status" id="">
                 <option value="disable">- Pilih Status -</option>
                 <option value="Aktif">Aktif</option>
-                <option value="Aktif">Tidak Aktif</option>  
+                <option value="Tidak Aktif">Tidak Aktif</option>  
             </select>
         </div>
     </div>
