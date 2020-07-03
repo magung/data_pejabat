@@ -2,33 +2,36 @@
   include "header.php";
   session_start();
 
-  if(isset($_SESSION['nip'])){
-    unset($_SESSION['nip']);
-    session_unset();
-    session_destroy();
+  if(isset($_SESSION['username'])){
+    header('location:index.php');
   }
 ?>
    <form method="post" action="" class="ml-2 card p-5 mt-5">
      <!-- untuk memproses form -->
      <?php
         if($_SERVER['REQUEST_METHOD']=='POST'){
-            $nip            = $_POST['nip'];
-            $password        = $_POST['password'];
-            
+            $username       = md5($_POST['username']);
+            $password       = md5($_POST['password']);
+            // var_dump($username);die();
             
                                             
-            if($password=='' || $nip==''){
+            if($password=='' || $username==''){
                 echo "<div class='alert alert-warning fade show alert-dismissible mt-2'>
                         Form harus di isi semua !
                     </div>";	
             }else{
-                $sql=mysqli_query($koneksi, "SELECT * FROM pejabat WHERE nip='".$nip."' AND password='".$password."'");
+                $sql=mysqli_query($koneksi, "SELECT * FROM pejabat WHERE username='".$username."' AND password='".$password."'");
                 $d=mysqli_fetch_array($sql);
                 // var_dump($d);die();
-                if(count($d) != 0){
-                    session_start();
-                    $_SESSION['nip'] = $nip;
-                    header('location:index.php');
+                if($d){
+                    echo '<script> window.setTimeout(alert("Suksess Login"), 3000);</script>';
+                    $_SESSION['username'] = $username;
+                    echo '<script> window.location.replace("index.php");</script>';
+                    // header('location:index.php');
+                }else{
+                    echo "<div class='alert alert-warning fade show alert-dismissible mt-2'>
+                        Username atau password salah !
+                    </div>";	
                 }
             }
             
@@ -36,9 +39,9 @@
         }
     ?>
     <div class="form-group row" >
-        <label class="col-md-2 col-form-label">Nip</label>
+        <label class="col-md-2 col-form-label">Username</label>
         <div class="input-group col-md-6">
-            <input type="text" class="form-control" name="nip" placeholder="Masukan NIP">
+            <input type="text" class="form-control" name="username" placeholder="Masukan Username">
         </div>
     </div>
 

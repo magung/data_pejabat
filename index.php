@@ -1,17 +1,18 @@
 <?php 
   include "header.php";
   session_start();
-  $nip = "";
-  if(!isset($_SESSION['nip'])){
+  $username = "";
+  if(!isset($_SESSION['username'])){
     header('location:login.php');
   }else{
-    $nip = $_SESSION['nip'];
+    $username = $_SESSION['username'];
   }
+  
 
 ?>  
     <div class="table-responsive p-5">
         <h1 class="text-gray-900">Tabel Pejabat</h1>
-        <a href="login.php" class='btn btn-danger btn-sm'>LOGOUT</a>
+        <a href="logout.php" class='btn btn-danger btn-sm'>LOGOUT</a>
         <table id='dataTables-example' class="text-gray-900 table">
             <thead>
             <tr> 
@@ -39,7 +40,7 @@
                         <td style='color:".($d['status'] == "Aktif" ? "black" : "grey")."'>$d[status]</td>    
                         <td align='center' width='70px'>";
                             
-                        if($nip == $d["nip"]){
+                        if($username == $d["username"]){
                             echo "<a class='btn btn-success btn-sm' href='pejabat_edit.php?id=$d[id]'>
                             <i class='fas fa-edit'></i></a>
                             
