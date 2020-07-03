@@ -1,9 +1,18 @@
 <?php 
   include "header.php";
+  session_start();
+  $nip = "";
+  if(!isset($_SESSION['nip'])){
+    header('location:login.php');
+  }else{
+    $nip = $_SESSION['nip'];
+  }
+
 ?>  
     <div class="table-responsive p-5">
-        <h5 class="text-gray-900">Table Pejabat</h5>
-        <table id='dataTables-example' class="text-gray-900 table table-bordered">
+        <h1 class="text-gray-900">Tabel Pejabat</h1>
+        <a href="login.php" class='btn btn-danger btn-sm'>LOGOUT</a>
+        <table id='dataTables-example' class="text-gray-900 table">
             <thead>
             <tr> 
                 <th>Nama</th>
@@ -28,15 +37,19 @@
                         <td style='color:".($d['status'] == "Aktif" ? "black" : "grey")."'>$d[nip]</td>
                         <td style='color:".($d['status'] == "Aktif" ? "black" : "grey")."'>$d[jabatan]</td>
                         <td style='color:".($d['status'] == "Aktif" ? "black" : "grey")."'>$d[status]</td>    
-                        <td align='center' width='70px'>
-                            <a class='btn btn-success btn-sm' href='pejabat_edit.php?id=$d[id]'>
+                        <td align='center' width='70px'>";
+                            
+                        if($nip == $d["nip"]){
+                            echo "<a class='btn btn-success btn-sm' href='pejabat_edit.php?id=$d[id]'>
                             <i class='fas fa-edit'></i></a>
                             
                             <a href='#myModal' class='hapus-pejabat btn btn-danger btn-sm' data-id='$d[id]' 
                             role='button' data-toggle='modal' data-nama='$d[nama]'>
-                            <i class='fas fa-times'></i></a>
+                            <i class='fas fa-times'></i></a>";
+                            
+                        }
 
-                            <div class='modal small fade' id='myModal' tabindex='-1' role='dialog' aria-labelledby='myModalLabel' aria-hidden='true'>
+                            echo "<div class='modal small fade' id='myModal' tabindex='-1' role='dialog' aria-labelledby='myModalLabel' aria-hidden='true'>
                                 <div class='modal-dialog'>
                                     <div class='modal-content'>
                                         <div class='modal-header'>

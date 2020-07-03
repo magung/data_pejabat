@@ -1,6 +1,8 @@
 <?php 
   include "header.php";
 ?>
+
+
 <form method="post" action="" class="ml-2 card p-5 mt-5">
 <h5 class="text-gray-900 mb-4">Tambah Data Pejabat</h5>
     
@@ -34,14 +36,26 @@
     ?>
 
     <div class="form-group row">
+        <label class="col-md-2 col-form-label">Status</label>
+        <div class="input-group col-md-10">
+            <select name="status" id="pilih_status" >
+                <option value="disable">- Pilih Status -</option>
+                <option value="Aktif">Aktif</option>
+                <option value="Tidak Aktif">Tidak Aktif</option>  
+            </select>
+        </div>
+    </div>
+
+
+    <div class="form-group row form-sembunyi" >
         <label class="col-md-2 col-form-label">Nama</label>
         <div class="input-group col-md-6">
-            <input type="text" class="form-control" name="nama" placeholder="Masukan">
+            <input type="text"  class="form-control" name="nama" placeholder="Masukan">
         </div>
     </div>
 
     
-    <div class="form-group row">
+    <div class="form-group row form-sembunyi" >
         <label class="col-md-2 col-form-label">Nip</label>
         <div class="input-group col-md-6">
             <input type="text" class="form-control" name="nip" placeholder="Masukan">
@@ -49,23 +63,14 @@
     </div>
 
     
-    <div class="form-group row">
+    <div class="form-group rown form-sembunyi" >
         <label class="col-md-2 col-form-label">Jabatan</label>
         <div class="input-group col-md-6">
-            <input type="text" class="form-control" name="jabatan" placeholder="Masukan">
+            <input type="text"  class="form-control" name="jabatan" placeholder="Masukan">
         </div>
     </div>
 
-    <div class="form-group row">
-        <label class="col-md-2 col-form-label">Status</label>
-        <div class="input-group col-md-10">
-            <select name="status" id="">
-                <option value="disable">- Pilih Status -</option>
-                <option value="Aktif">Aktif</option>
-                <option value="Tidak Aktif">Tidak Aktif</option>  
-            </select>
-        </div>
-    </div>
+
 
     <div class="mb-2">
     <a href="index.php" class="btn btn-danger btn-sm">

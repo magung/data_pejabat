@@ -31,6 +31,10 @@
       <script>
         $(document).ready(function () {
             $('#dataTables-example').dataTable();
+            $(".form-sembunyi").hide();
+            $("#pilih_status").change(function(){
+              $(".form-sembunyi").show();  
+            });
         });
       </script>
     <!-- Data table -->
