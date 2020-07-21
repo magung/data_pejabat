@@ -10,6 +10,7 @@
      <!-- untuk memproses form -->
      <?php
         if($_SERVER['REQUEST_METHOD']=='POST'){
+            $id       = $_POST['id'];
             $username       = md5($_POST['username']);
             $password       = md5($_POST['password']);
             // var_dump($username);die();
@@ -20,17 +21,17 @@
                         Form harus di isi semua !
                     </div>";	
             }else{
-                $sql=mysqli_query($koneksi, "SELECT * FROM pejabat WHERE username='".$username."' AND password='".$password."'");
-                $d=mysqli_fetch_array($sql);
+                $sql=mysqli_query($koneksi, "UPDATE pejabat SET username='".$username."', password='".$password."' WHERE id='".$id."'");
+                
                 // var_dump($d);die();
-                if($d){
-                    echo '<script> window.setTimeout(alert("Suksess Login"), 3000);</script>';
+                if($sql){
+                    echo '<script> window.setTimeout(alert("Suksess Register"), 3000);</script>';
                     $_SESSION['username'] = $username;
                     echo '<script> window.location.replace("index.php");</script>';
                     // header('location:index.php');
                 }else{
                     echo "<div class='alert alert-warning fade show alert-dismissible mt-2'>
-                        Username atau password salah !
+                        Gagal Register !
                     </div>";	
                 }
             }
@@ -38,7 +39,23 @@
 
         }
     ?>
-    <h5 class="text-gray-900 mb-4">Login Pejabat</h5>
+    <h5 class="text-gray-900 mb-4">Register Pejabat</h5>
+    <div class="form-group row" >
+        <label class="col-md-2 col-form-label">Nama</label>
+        <div class="input-group col-md-6">
+            <select name="id" id="pilih"  class="form-control">
+                <option value="disable">- Pilih Pejabat -</option>
+                
+                <?php
+                    $sql=mysqli_query($koneksi, "SELECT * FROM pejabat WHERE username='noregister'");
+            
+                    while($d=mysqli_fetch_array($sql)){
+                        echo "<option value='$d[id]'>$d[nama]</option>";
+                    }
+                ?>
+            </select>
+        </div>
+    </div>
     <div class="form-group row" >
         <label class="col-md-2 col-form-label">Username</label>
         <div class="input-group col-md-6">
@@ -54,8 +71,9 @@
     </div>
 
     <div class="mb-2">
-    <input type="submit" class="btn btn-primary btn-sm" value="Login" />
-    <a href="register.php" class="btn btn-success btn-sm" >Register</a>
+
+    <input type="submit" class="btn btn-primary btn-sm" value="Register" />
+    <a href="login.php" class="btn btn-warning btn-sm" >Back</a>
     </div>
 
 </form>

@@ -12,7 +12,7 @@
 ?>  
     <div class="table-responsive p-5">
         <h1 class="text-gray-900">Tabel Pejabat</h1>
-        <a href="logout.php" class='btn btn-danger btn-sm'>LOGOUT</a>
+        
         <table id='dataTables-example' class="text-gray-900 table">
             <thead>
             <tr> 
@@ -48,6 +48,9 @@
                             role='button' data-toggle='modal' data-nama='$d[nama]'>
                             <i class='fas fa-times'></i></a>";
                             
+                        }else{
+                            echo " <a class='btn btn-primary btn-sm' href='pejabat_edit.php?id=$d[id]'>
+                            <i class='fas fa-eye'></i></a>";
                         }
 
                             echo "<div class='modal small fade' id='myModal' tabindex='-1' role='dialog' aria-labelledby='myModalLabel' aria-hidden='true'>
@@ -79,6 +82,8 @@
             ?>
             </tbody>
         </table>
+
+    <a href="logout.php" class='btn btn-danger btn-sm'>LOGOUT</a>
     </div>
 <script>
 // Peringatan hapus buku

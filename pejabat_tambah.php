@@ -23,8 +23,8 @@
             }else{
                 //simpan data
                 $simpan = mysqli_query($koneksi,
-                "INSERT INTO `pejabat` (`id` ,`nama`, `nip`, `jabatan`, `status`, `tanda_tangan`) 
-                VALUES (null, '$nama', '$nip', '$jabatan', '$status', '')");
+                "INSERT INTO `pejabat` (`id` ,`nama`, `nip`, `jabatan`, `status`, `tanda_tangan`, `username`) 
+                VALUES (null, '$nama', '$nip', '$jabatan', '$status', '', 'noregister')");
                 
                 if($simpan){
                     header('location:index.php');
@@ -37,8 +37,8 @@
 
     <div class="form-group row">
         <label class="col-md-2 col-form-label">Status</label>
-        <div class="input-group col-md-10">
-            <select name="status" id="pilih_status" >
+        <div class="input-group col-md-4">
+            <select name="status" id="pilih_status"  class="form-control">
                 <option value="disable">- Pilih Status -</option>
                 <option value="Aktif">Aktif</option>
                 <option value="Tidak Aktif">Tidak Aktif</option>  
@@ -63,7 +63,7 @@
     </div>
 
     
-    <div class="form-group rown form-sembunyi" >
+    <div class="form-group row form-sembunyi" >
         <label class="col-md-2 col-form-label">Jabatan</label>
         <div class="input-group col-md-6">
             <input type="text"  class="form-control" name="jabatan" placeholder="Masukan">
