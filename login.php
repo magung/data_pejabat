@@ -20,17 +20,25 @@
                         Form harus di isi semua !
                     </div>";	
             }else{
-                $sql=mysqli_query($koneksi, "SELECT * FROM pejabat WHERE username='".$username."' AND password='".$password."'");
+                $sql=mysqli_query($koneksi, "SELECT * FROM pejabat WHERE username='".$username."' AND password='".$password."' AND kadaluwarsa >= NOW()");
                 $d=mysqli_fetch_array($sql);
-                // var_dump($d);die();
+                // var_dump($d['kunjungan']);die();
                 if($d){
-                    echo '<script> window.setTimeout(alert("Suksess Login"), 3000);</script>';
-                    $_SESSION['username'] = $username;
-                    echo '<script> window.location.replace("index.php");</script>';
+                    $new_kunjungan = 1 + $d['kunjungan'];
+                    $update = mysqli_query($koneksi, "UPDATE pejabat SET kunjungan='$new_kunjungan' WHERE id='".$d['id']."'");
+                    if($update){
+                        echo '<script> window.setTimeout(alert("Suksess Login"), 3000);</script>';
+                        $_SESSION['username'] = $username;
+                        echo '<script> window.location.replace("index.php");</script>';
+                    }else {
+                        echo "<div class='alert alert-warning fade show alert-dismissible mt-2'>
+                        Gagal nambah kunjungan !
+                        </div>";	
+                    }
                     // header('location:index.php');
                 }else{
                     echo "<div class='alert alert-warning fade show alert-dismissible mt-2'>
-                        Username atau password salah !
+                        Gagal Login mungkin Username atau password anda salah atau user anda kadaluwarsa !
                     </div>";	
                 }
             }

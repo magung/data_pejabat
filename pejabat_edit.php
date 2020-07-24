@@ -97,7 +97,7 @@
             <label class="col-md-2 col-form-label">Photo Profile</label>
             <div class="input-group col-md-6">
                 <input type="file" class="form-control" name="profile" id="uploadImg" <?php echo $username == $e["username"] ? "" : "hidden"; ?> >
-                <img src="images/<?= $e['profile'] ?>" alt="" width=100 height=100 id="uploadPreview">
+                <img src="images/<?= $e['profile'] ?>" alt="" width=200 height=300 id="uploadPreview">
             </div>
         </div>
 

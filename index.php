@@ -20,6 +20,7 @@
                 <th>Nip</th>
                 <th>Jabatan</th>
                 <th>Status</th>
+                <th>Jumlah Kunjungan</th>
                 <th class="text-center">
                     <a href="pejabat_tambah.php" class="btn btn-primary btn-sm">
                         <i class="fas fa-plus"></i>
@@ -37,7 +38,8 @@
                         <td style='color:".($d['status'] == "Aktif" ? "black" : "grey")."'>$d[nama]</td>
                         <td style='color:".($d['status'] == "Aktif" ? "black" : "grey")."'>$d[nip]</td>
                         <td style='color:".($d['status'] == "Aktif" ? "black" : "grey")."'>$d[jabatan]</td>
-                        <td style='color:".($d['status'] == "Aktif" ? "black" : "grey")."'>$d[status]</td>    
+                        <td style='color:".($d['status'] == "Aktif" ? "black" : "grey")."'>$d[status]</td> 
+                        <td style='color:".($d['status'] == "Aktif" ? "black" : "grey")."'>$d[kunjungan]</td>    
                         <td align='center' width='70px'>";
                             
                         if($username == $d["username"]){
